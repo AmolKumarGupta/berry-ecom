@@ -10,6 +10,15 @@ class UserController extends Controller
         return view('user.login');
     }
     public function check(Request $req){
-        return User::where('name',$req->name)->first();
+      $validated = $req->validate([
+        'name'=>'required|exists:users,name|max:20',
+        'password'=>'required',
+      ]);
+      $user = User::where('name',$req->name)->first();
+      if($user->password != $req->password){
+        return redirect('login')->with('wrongpwd','Your password is incorrect');
+      }
+      session(['name'=>$user->name]);
+      return view('index');
     }
 }

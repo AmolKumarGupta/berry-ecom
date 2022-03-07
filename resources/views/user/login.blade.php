@@ -6,11 +6,20 @@
       @csrf
       <div class="">
         <label for="name">Username</label><br/>
-        <input type="text" name="name" id="name" class="border-2 rounded p-[2px]" required>
+        <input type="text" name="name" id="name" class="border-2 rounded p-[2px]"><br/>
+        @error('name')
+          <small>{{ $message }}</small>
+        @enderror
       </div>
       <div class="">
         <label for="pwd">Password</label><br/>
-        <input type="password" name="password" id="pwd" class="border-2 rounded p-[2px]" required>
+        <input type="password" name="password" id="pwd" class="border-2 rounded p-[2px]"><br/>
+        @error('password')
+          <small>{{ $message }}</small>
+        @enderror
+        @if($e = session('wrongpwd'))
+          <small>{{ $e }}</small>
+        @endif
       </div>
       <div class="">
         <input type="submit" value="submit" class="border-2 rounded px-2 py-1">

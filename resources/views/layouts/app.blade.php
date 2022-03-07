@@ -30,7 +30,10 @@
       <ul class="text-xl sm:flex sm:justify-end sm:gap-4 sm:h-full sm:items-center">
         <a href="{{ url('/') }}"><li class="py-2 border-2 border-gray-300 rounded sm:border-none ">Home</li></a>
         <a href=""><li class="py-2 border-2 border-gray-300 rounded sm:border-none ">Cart</li></a>
+        @if(!session('name'))
         <a href="{{ url('/login') }}"><li class="py-2 border-2 border-gray-300 rounded sm:border-none ">Login</li></a>
+        @endif
+        
       </ul>
     </div>
   </nav>
