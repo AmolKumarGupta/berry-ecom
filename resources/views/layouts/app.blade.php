@@ -33,6 +33,9 @@
         @if(!session('name'))
         <a href="{{ url('/login') }}"><li class="py-2 border-2 border-gray-300 rounded sm:border-none ">Login</li></a>
         @endif
+        @if(session('name'))
+        <a href="{{ url('/logout') }}"><li class="py-2 border-2 border-gray-300 rounded sm:border-none ">Logout</li></a>
+        @endif
         
       </ul>
     </div>

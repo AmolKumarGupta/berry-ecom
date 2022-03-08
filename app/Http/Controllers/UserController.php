@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Product;
 class UserController extends Controller
 {
     public function login(){
@@ -19,6 +20,11 @@ class UserController extends Controller
         return redirect('login')->with('wrongpwd','Your password is incorrect');
       }
       session(['name'=>$user->name]);
-      return view('index');
+      return view('index',array('data'=>Product::all()));
+    }
+
+    public function logout(Request $req){
+      $req->session()->forget('name');
+      return view('index',array('data'=>Product::all()));
     }
 }
